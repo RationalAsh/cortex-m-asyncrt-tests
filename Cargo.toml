@@ -1,0 +1,37 @@
+[package]
+name = "motor-controller-rs"
+version = "0.1.0"
+edition = "2021"
+authors = ["Ashwin Narayan < ashwinnarayan1994@gmail.com >"]
+
+
+[[bin]]
+name = "blinky"
+path = "src/bin/blinky.rs"
+test = false
+bench = false
+
+[[bin]]
+name = "qemu-test"
+path = "src/bin/qemu-test.rs"
+test = false
+bench = false
+
+# Set up the release profile to optimize our binaries
+[profile.release]
+codegen-units = 1 # better optimizations
+debug = true      # symbols are nice and they don't increase the size on Flash
+lto = true        # better optimizations
+opt-level = "s"   # Optimize for size
+
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+[dependencies]
+cortex-m = { version = "0.7", features = ["critical-section-single-core"] }
+cortex-m-rt = "0.7"
+panic-probe = { version = "0.3" }
+libm = "0.2.8"
+cortex-m-asyncrt = { path = "../cortex-m-asyncrt" }
+cortex-m-semihosting = { version = "0.5" }
+panic-semihosting = { version = "0.6", features = ["exit"] }
+# panic-halt = "0.2.0"
