@@ -1,7 +1,7 @@
 #![no_std]
 #![no_main]
 
-use cortex_m_asyncrt::os::{self, executor, init_heap, Task};
+use cortex_m_asyncrt::os::{executor, init_heap, Task};
 use cortex_m_rt::entry;
 use cortex_m_semihosting::{dbg, hprintln};
 // use panic_probe as _;
@@ -11,7 +11,7 @@ use panic_semihosting as _;
 fn main() -> ! {
     init_heap();
     hprintln!("Hello, worlds!");
-    // New executor that can run up to 32 tasks
+    // New executor that can run up to 64 tasks
     let mut executor = executor::Executor::new::<64>();
 
     // Spawn a task

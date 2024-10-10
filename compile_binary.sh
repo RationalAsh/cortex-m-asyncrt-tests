@@ -20,7 +20,7 @@ do
     cargo objdump --bin ${binary} --release -- -d --no-show-raw-insn --print-imm-hex > firmware/${binary}.asm
 
     # Then create the binary file.
-    cargo objcopy --release -- -O binary firmware/${binary}.bin
+    cargo objcopy --bin ${binary}  --release -- -O binary firmware/${binary}.bin
 
     # Run cargo size to get the size of the binary.
     cargo size --bin ${binary} --release
